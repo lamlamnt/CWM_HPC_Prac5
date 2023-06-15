@@ -1,3 +1,4 @@
+reset
 n = 6
 max = 1.5
 min = -1.5
@@ -14,4 +15,4 @@ set style fill solid 0.5 #fillstyle
 set tics out nomirror
 set xlabel "Number"
 set ylabel "Frequency"
-plot "data.dat" u (hist($1,width))
+plot "data.dat" u (hist($1,width)):(1.0) smooth freq w boxes lc rgb"green" notitle
