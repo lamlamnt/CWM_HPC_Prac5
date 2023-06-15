@@ -24,6 +24,7 @@ float calculate_std(float *input, float mean, int n){
 //Histogram divided into less than -1, between -1 and -0.5, between -0.5 and 0, between 0 and 0.5, between 0.5 and 1, and greater
 //than 1
 void generate_histogram(float *input, int n){
+	/*
 	int count_1; int count_2; int count_3, int count_4, int count_5, int count_6;
 	for(int i = 0; i < n; i++){
 		if(input[i] < -1) count_1 +=1;
@@ -33,9 +34,14 @@ void generate_histogram(float *input, int n){
 		else if(input[i] > 0.5 && input[i] < 1) {count_5 +=1};
 		else{count_6 +=1;}
 	}
-	//Writes the histogram values to a file
+	*/
+	//Writes the input values to a file
 	FILE *fp;
-	
+	fp = fopen("data.dat","w");
+	for(int i = 0; i < n; i++){
+		fprintf(fp,"%f\n",input[i]);
+	}
+	fclose(fp);
 }
 
 int main(void){
@@ -69,7 +75,9 @@ int main(void){
 		
 	float std = calculate_std(h_output,mean,n);
 	printf("The standard deviation is %f \n",std);
-
+	
+	//Output histogram to a png
+	generate_histogram(h_output,n);
 	//cleanup memory
 	free(h_output);
 	cudaFree(d_output);
